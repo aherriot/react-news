@@ -2,55 +2,55 @@
 ====================================== */
 
 .header {
-    z-index: 6;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    line-height: $nav-height;
-    color: #fff;
-    overflow: visible;
-    background: $header;
+  z-index: 6;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  line-height: $nav-height;
+  color: #fff;
+  overflow: visible;
+  background: $header;
 
-    a { color: #fff; }
+  a { color: #fff; }
 }
 
 .menu-title {
-    padding: $x-small $small;
+  padding: $x-small $small;
 }
 
 .newpost-link {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 0.5rem;
-    padding: 0 1rem;
-    line-height: 1;
-    font-size: 2em;
-    cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  padding: 0 1rem;
+  line-height: 1;
+  font-size: 2em;
+  cursor: pointer;
 }
 
 .header-title {
-    padding: $x-small $medium;
+  padding: $x-small $medium;
 }
 
 .register-link {
-    margin-left: $small;
+  margin-left: $small;
 }
 
 .profile-link {
-    display: inline-block;
+  display: inline-block;
 }
 
 .profile-pic {
-    width: $medium;
-    height: $medium;
-    margin: 0 0.8rem;
-    vertical-align: middle;
-    border-radius: 50%;
-    // filter: grayscale(100%);
-    @media screen and (max-width: 600px) {
-        display: none;
-    }
+  width: $medium;
+  height: $medium;
+  margin: 0 0.8rem;
+  vertical-align: middle;
+  border-radius: 50%;
+  // filter: grayscale(100%);
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 }
 
 // .username {}

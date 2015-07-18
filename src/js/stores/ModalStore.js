@@ -5,42 +5,42 @@ import Actions from '../actions/Actions';
 import { errorMessages } from '../util/constants';
 
 function getErrorMessage(code) {
-    return errorMessages[code] || errorMessages.default;
+  return errorMessages[code] || errorMessages.default;
 }
 
 let modalState = {
-    type: 'login',
-    errorMessage: '',
-    show: false
+  type: 'login',
+  errorMessage: '',
+  show: false
 };
 
 const ModalStore = Reflux.createStore({
 
-    listenables: Actions,
+  listenables: Actions,
 
-    showModal(type, errorCode) {
-        modalState = {
-            type: type,
-            show: true,
-            errorMessage: errorCode ? getErrorMessage(errorCode) : ''
-        };
+  showModal(type, errorCode) {
+    modalState = {
+      type: type,
+      show: true,
+      errorMessage: errorCode ? getErrorMessage(errorCode) : ''
+    };
 
-        this.trigger(modalState);
-    },
+    this.trigger(modalState);
+  },
 
-    hideModal() {
-        modalState.show = false;
-        this.trigger(modalState);
-    },
+  hideModal() {
+    modalState.show = false;
+    this.trigger(modalState);
+  },
 
-    modalError(errorCode) {
-        modalState.errorMessage = getErrorMessage(errorCode);
-        this.trigger(modalState);
-    },
+  modalError(errorCode) {
+    modalState.errorMessage = getErrorMessage(errorCode);
+    this.trigger(modalState);
+  },
 
-    getDefaultData() {
-        return modalState;
-    }
+  getDefaultData() {
+    return modalState;
+  }
 
 });
 

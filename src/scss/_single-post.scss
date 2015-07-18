@@ -4,20 +4,20 @@
 // .comments {}
 
 .comment {
-    // animation: slide-in 0.5s;
-    margin: $small 0;
-    background: #fff;
-    & + & {
-        margin-top: $small;
-    }
+  // animation: slide-in 0.5s;
+  margin: $small 0;
+  background: #fff;
+  & + & {
+    margin-top: $small;
+  }
 }
 
 .comment-form {
-    margin-top: $medium;
+  margin-top: $medium;
 }
 
 // .comment-text {}
 
 .comment-input {
-    margin: $small 0;
+  margin: $small 0;
 }

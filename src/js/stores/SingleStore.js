@@ -10,61 +10,61 @@ const postsRef = ref.child('posts');
 const commentsRef = ref.child('comments');
 
 let postData = {
-    post: {},
-    comments: []
+  post: {},
+  comments: []
 };
 
 const SingleStore = Reflux.createStore({
 
-    listenables: Actions,
+  listenables: Actions,
 
-    watchPost(postId) {
-        postsRef
-            .child(postId)
-            .on('value', this.updatePost.bind(this));
+  watchPost(postId) {
+    postsRef
+      .child(postId)
+      .on('value', this.updatePost.bind(this));
 
-        commentsRef
-            .orderByChild('postId')
-            .equalTo(postId)
-            .on('value', this.updateComments.bind(this));
-    },
+    commentsRef
+      .orderByChild('postId')
+      .equalTo(postId)
+      .on('value', this.updateComments.bind(this));
+  },
 
-    stopWatchingPost(postId) {
-        postsRef.child(postId).off();
-        commentsRef.orderByChild('postId').equalTo(postId).off();
-    },
+  stopWatchingPost(postId) {
+    postsRef.child(postId).off();
+    commentsRef.orderByChild('postId').equalTo(postId).off();
+  },
 
-    updatePost(postDataObj) {
-        let post = postDataObj.val();
+  updatePost(postDataObj) {
+    let post = postDataObj.val();
 
-        if (!post) {
-            // post doesn't exist
-            postData.post = null;
-        } else {
-            post.id = postDataObj.key();
-            postData.post = post;
-        }
-
-        this.trigger(postData);
-    },
-
-    updateComments(commentDataObj) {
-        let newComments = [];
-
-        commentDataObj.forEach(commentData => {
-            let comment = commentData.val();
-            comment.id = commentData.key();
-            newComments.unshift(comment);
-        });
-
-        postData.comments = newComments;
-
-        this.trigger(postData);
-    },
-
-    getDefaultData() {
-        return postData;
+    if (!post) {
+      // post doesn't exist
+      postData.post = null;
+    } else {
+      post.id = postDataObj.key();
+      postData.post = post;
     }
+
+    this.trigger(postData);
+  },
+
+  updateComments(commentDataObj) {
+    let newComments = [];
+
+    commentDataObj.forEach(commentData => {
+      let comment = commentData.val();
+      comment.id = commentData.key();
+      newComments.unshift(comment);
+    });
+
+    postData.comments = newComments;
+
+    this.trigger(postData);
+  },
+
+  getDefaultData() {
+    return postData;
+  }
 
 });
 

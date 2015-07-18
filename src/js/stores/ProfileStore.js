@@ -14,69 +14,69 @@ const commentsRef = ref.child('comments');
 let postListener, commentListener;
 
 let data = {
-    userId: '',
-    posts: [],
-    comments: []
+  userId: '',
+  posts: [],
+  comments: []
 };
 
 const ProfileStore = Reflux.createStore({
 
-    listenables: Actions,
+  listenables: Actions,
 
-    watchProfile(id) {
-        data.userId = id;
+  watchProfile(id) {
+    data.userId = id;
 
-        postListener = postsRef
-            .orderByChild('creatorUID')
-            .equalTo(data.userId)
-            .limitToLast(3)
-            .on('value', this.updatePosts.bind(this));
+    postListener = postsRef
+      .orderByChild('creatorUID')
+      .equalTo(data.userId)
+      .limitToLast(3)
+      .on('value', this.updatePosts.bind(this));
 
-        commentListener = commentsRef
-            .orderByChild('creatorUID')
-            .equalTo(data.userId)
-            .limitToLast(3)
-            .on('value', this.updateComments.bind(this));
-    },
+    commentListener = commentsRef
+      .orderByChild('creatorUID')
+      .equalTo(data.userId)
+      .limitToLast(3)
+      .on('value', this.updateComments.bind(this));
+  },
 
-    stopWatchingProfile() {
-        postsRef.off('value', postListener);
-        commentsRef.off('value', commentListener);
-    },
+  stopWatchingProfile() {
+    postsRef.off('value', postListener);
+    commentsRef.off('value', commentListener);
+  },
 
-    updatePosts(postDataObj) {
-        let newPosts = [];
+  updatePosts(postDataObj) {
+    let newPosts = [];
 
-        // postDataObj: firebase object with a forEach property
-        postDataObj.forEach(postData => {
-            let post = postData.val();
-            post.id = postData.key();
-            newPosts.unshift(post);
-        });
+    // postDataObj: firebase object with a forEach property
+    postDataObj.forEach(postData => {
+      let post = postData.val();
+      post.id = postData.key();
+      newPosts.unshift(post);
+    });
 
-        data.posts = newPosts;
+    data.posts = newPosts;
 
-        this.trigger(data);
-    },
+    this.trigger(data);
+  },
 
-    updateComments(commentDataObj) {
-        let newComments = [];
+  updateComments(commentDataObj) {
+    let newComments = [];
 
-        // commentDataObj: firebase object with a forEach property
-        commentDataObj.forEach(commentData => {
-            let comment = commentData.val();
-            comment.id = commentData.key();
-            newComments.unshift(comment);
-        });
+    // commentDataObj: firebase object with a forEach property
+    commentDataObj.forEach(commentData => {
+      let comment = commentData.val();
+      comment.id = commentData.key();
+      newComments.unshift(comment);
+    });
 
-        data.comments = newComments;
+    data.comments = newComments;
 
-        this.trigger(data);
-    },
+    this.trigger(data);
+  },
 
-    getDefaultData() {
-        return data;
-    }
+  getDefaultData() {
+    return data;
+  }
 });
 
 export default ProfileStore;

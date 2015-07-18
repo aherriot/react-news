@@ -3,40 +3,40 @@
 ====================================== */
 
 html {
-    height: 100%;
-    max-height: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  height: 100%;
+  max-height: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
-    height: 100%;
-    max-height: 100%;
-    line-height: $line-height;
-    color: $dark-gray;
-    background: $background;
-    font-family: $body-font;
-    font-size: $font-size;
-    text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-    font-feature-settings: 'kern' 1;
-    font-kerning: normal;
+  height: 100%;
+  max-height: 100%;
+  line-height: $line-height;
+  color: $dark-gray;
+  background: $background;
+  font-family: $body-font;
+  font-size: $font-size;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+  font-kerning: normal;
 }
 
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 
 #content {
-    margin: 0 auto;
-    padding-top: $nav-height !important;
+  margin: 0 auto;
+  padding-top: $nav-height !important;
 }
 
 .content {
-    position: relative;
-    display: inline-block;
-    padding: $medium $small;
-    background: #fff;
+  position: relative;
+  display: inline-block;
+  padding: $medium $small;
+  background: #fff;
 }
