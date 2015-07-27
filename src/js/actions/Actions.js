@@ -38,6 +38,8 @@ const Actions = Reflux.createActions({
   'editWord': {},
 
 
+  //Quiz Actions
+
 
 
   // firebase actions

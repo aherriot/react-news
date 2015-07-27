@@ -12,6 +12,7 @@ const errorMessages = {
 };
 
 const constants = {
+  MAX_RECENT_WRONG: 5,
   errorMessages: errorMessages,
   firebaseUrl: 'https://burning-heat-6329.firebaseio.com/'
 };

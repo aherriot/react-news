@@ -18,9 +18,8 @@ import Actions from './actions/Actions';
 import UserStore from './stores/UserStore';
 import ModalStore from './stores/ModalStore';
 
-import Posts from './views/Posts';
 import Words from './views/Words';
-import SinglePost from './views/Single';
+import Quiz from './views/Quiz';
 import Profile from './views/Profile';
 import UhOh from './views/404';
 import Login from './components/Login';
@@ -81,14 +80,6 @@ let App = React.createClass({
     Actions.hideModal();
   },
 
-  newPost() {
-    if (this.state.user.isLoggedIn) {
-      Actions.showModal('newpost');
-    } else {
-      Actions.showModal('login', 'LOGIN_REQUIRED');
-    }
-  },
-
   render() {
     let user = this.state.user;
     let modal = this.state.modal;
@@ -135,6 +126,9 @@ let App = React.createClass({
       <header className="header cf">
         <div className="float-left">
         <Link to="/" className="menu-title">Flashcards</Link>
+        <Link to="/quiz" className="menu-title">Quiz</Link>
+        <Link to="/words" className="menu-title">Words</Link>
+
         </div>
         <div className="float-right">
         { userArea }
@@ -166,9 +160,8 @@ React.render((
   <Router history={ new HashHistory() }>
   <Route component={ App }>
     <Route name="home" path="/" component={ Words } />
-    <Route name="posts" path="/posts/:pageNum" component={ Posts } />
-    <Route name="post" path="/post/:postId" component={ SinglePost } />
     <Route name="words" path="/words" component={ Words } />
+    <Route name="quiz" path="/quiz" component={ Quiz } />
     <Route name="profile" path="/user/:username" component={ Profile } />
     <Route path="*" component={ UhOh } />
 

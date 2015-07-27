@@ -33,6 +33,7 @@ const WordsStore = Reflux.createStore({
     wordData.forEach(wordDataItem => {
       let word = wordDataItem.val();
       word.id = wordDataItem.key();
+      word.tags = word.tags.split(',');
       newWords.unshift(word);
     });
 

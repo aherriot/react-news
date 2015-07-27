@@ -15,6 +15,8 @@ const WordListItem = React.createClass({
     return {
       english: this.props.word.english,
       persian: this.props.word.persian,
+      phonetic: this.props.word.phonetic,
+      tags: this.props.word.tags.join(','),
       isEditing: false
     };
   },
@@ -36,6 +38,9 @@ const WordListItem = React.createClass({
     // let id = updatedWord.id
     updatedWord.english = this.state.english;
     updatedWord.persian = this.state.persian;
+    updatedWord.phonetic = this.state.phonetic;
+    updatedWord.tags = this.state.tags;
+
     Actions.updateWord(updatedWord);
   },
   onRevert(e) {
@@ -80,8 +85,8 @@ const WordListItem = React.createClass({
 			<div className="row">
 				<div className="col">{persian}</div> |
 				<div className="col">{english}</div> |
-				<div className="col s12 m4 l3">{phonetic}</div>
-        <div className="col s6 m4 l2">{tags}</div>
+				<div className="col s12 m4 l3">{phonetic}</div> |
+        <div className="col s6 m4 l2">{tags}</div> |
 				<div className="col">{buttons}</div>
 			</div>
 		);

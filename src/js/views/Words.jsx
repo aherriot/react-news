@@ -51,9 +51,22 @@ const Words = React.createClass({
   },
   addWord(e) {
     e.preventDefault();
-    let english = React.findDOMNode(this.refs.english).value;
-    let persian = React.findDOMNode(this.refs.persian).value;
-    Actions.addWord({english: english, persian: persian, creatorUID: this.state.user.uid});
+    let english = React.findDOMNode(this.refs.english);
+    let persian = React.findDOMNode(this.refs.persian);
+    let phonetic = React.findDOMNode(this.refs.phonetic);
+    let tags = React.findDOMNode(this.refs.tags);
+
+    Actions.addWord({
+      english: english.value,
+      persian: persian.value,
+      phonetic: phonetic.value,
+      tags: tags.value,
+      creatorUID: this.state.user.uid});
+
+    english.value = '';
+    persian.value = '';
+    phonetic.value = '';
+    tags.value = '';
   },
 
 
@@ -73,8 +86,11 @@ const Words = React.createClass({
         </div>
         <div>
           <form onSubmit={this.addWord}>
-            <input ref="english" type="text" placeholder="english" />
-            <input ref="persian" type="text" placeholder="persian" />
+            <input ref="persian" type="text" placeholder="Persian" />
+            <input ref="english" type="text" placeholder="English" />
+            <input ref="phonetic" type="text" placeholder="Phonetic" />
+            <input ref="tags" type="text" placeholder="Tags" />
+
             <button type="submit">Add</button>
           </form>
         </div>
