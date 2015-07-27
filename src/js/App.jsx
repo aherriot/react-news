@@ -24,7 +24,6 @@ import Profile from './views/Profile';
 import UhOh from './views/404';
 import Login from './components/Login';
 import Register from './components/Register';
-import NewPost from './components/NewPost';
 
 import cx from 'classnames';
 
@@ -132,10 +131,6 @@ let App = React.createClass({
         </div>
         <div className="float-right">
         { userArea }
-        <a className="newpost-link" onClick={ this.newPost }>
-          <i className="fa fa-plus-square-o"></i>
-          <span className="sr-only">New Post</span>
-        </a>
         </div>
       </header>
 
