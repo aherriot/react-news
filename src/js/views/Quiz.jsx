@@ -153,8 +153,17 @@ const Words = React.createClass({
   },
 
   render() {
+    let user = this.state.user;
     let content;
     let word = this.state.word ? this.state.word[this.state.srcLang] : '';
+
+    if(!user.isLoggedIn) {
+      return (
+        <div className="content full-width">
+          Login to view the quiz.
+        </div>
+      )
+    }
 
     if(this.state.isMarking) {
       content = (<ResultsArea
@@ -169,18 +178,21 @@ const Words = React.createClass({
     }
 
     return (
+      <div className="content full-width">
+        <h1>Quiz</h1>
 
-      <div className="row">
-        <div className="col offset-s0 s12 offset-m1 m10 offset-l2 l8">
-          <div className="card">
-            <div className="card-content">
-              <span className="">{word}</span>
-              <div className="right">
-                <a href="#" className="" onClick={this.onEdit}>Edit</a>&nbsp;|&nbsp;
-                <a href="#" className="" onClick={this.onDisplayOptions}>Options</a>
+        <div className="row">
+          <div className="col offset-s0 s12 offset-m1 m10 offset-l2 l8">
+            <div className="card">
+              <div className="card-content">
+                <span className="">{word}</span>
+                <div className="right">
+                  <a href="#" className="" onClick={this.onEdit}>Edit</a>&nbsp;|&nbsp;
+                  <a href="#" className="" onClick={this.onDisplayOptions}>Options</a>
+                </div>
+                <hr/>
+                {content}
               </div>
-              <hr/>
-              {content}
             </div>
           </div>
         </div>

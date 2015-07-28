@@ -71,31 +71,47 @@ const Words = React.createClass({
 
 
   render() {
-    //let user = this.state.user;
+    let user = this.state.user;
     let words = this.state.words;
+    let content;
 
-    words = words.map(function(word) {
-      return <WordListItem key={word.id} word={word}/>;
-    });
+    if(user.isLoggedIn) {
+      words = words.map(function(word) {
+        return <WordListItem key={word.id} word={word}/>;
+      });
+
+      content = (
+        <div>
+          <h1>Words</h1>
+          <div className="words">
+            { this.state.loading ? <Spinner /> : words }
+          </div>
+          <div>
+            <form onSubmit={this.addWord}>
+              <input ref="persian" type="text" placeholder="Persian" />
+              <input ref="english" type="text" placeholder="English" />
+              <input ref="phonetic" type="text" placeholder="Phonetic" />
+              <input ref="tags" type="text" placeholder="Tags" />
+
+              <button type="submit">Add</button>
+            </form>
+          </div>
+        </div>
+      );
+    } else { //not logged in
+      content = (
+        <div>
+          Login to view your word list, or sign up to create an account.
+        </div>
+      );
+    }
 
     return (
       <div className="content full-width">
-        <hr />
-        <div className="words">
-          { this.state.loading ? <Spinner /> : words }
-        </div>
-        <div>
-          <form onSubmit={this.addWord}>
-            <input ref="persian" type="text" placeholder="Persian" />
-            <input ref="english" type="text" placeholder="English" />
-            <input ref="phonetic" type="text" placeholder="Phonetic" />
-            <input ref="tags" type="text" placeholder="Tags" />
-
-            <button type="submit">Add</button>
-          </form>
-        </div>
+        {content}
       </div>
     );
+
   }
 
 });
